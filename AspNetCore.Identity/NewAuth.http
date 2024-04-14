@@ -1,0 +1,47 @@
+@HostAddress = http://localhost:5213
+
+### Register a new user
+POST {{HostAddress}}/register
+Content-Type: application/json
+
+{
+  "username": "shallows",
+  "password": "Password1!", 
+  "email": "random-user@gmail.com"
+}
+
+### Login
+POST {{HostAddress}}/login?useCookies=false
+Content-Type: application/json
+
+{
+  "email": "random-user@gmail.com",
+  "password": "Password1!"
+}
+
+> {% 
+    client.global.set("accessToken", response.body.accessToken);
+    client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+### Get message
+GET {{HostAddress}}
+Authorization: Bearer {{accessToken}}
+
+### Refresh the token
+POST {{HostAddress}}/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+> {%
+    client.global.set("accessToken", response.body.accessToken);
+    client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+### Manage info
+GET {{HostAddress}}/manage/info
+Authorization: Bearer {{accessToken}}
+

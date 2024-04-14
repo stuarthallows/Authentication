@@ -1,0 +1,27 @@
+@HostAddress = http://localhost:5174
+
+### Register a new user
+POST {{HostAddress}}/api/users/register
+Content-Type: application/json
+
+{
+  "email": "user@company.com",
+  "firstName": "Tom",
+  "lastName": "Smith"
+}
+
+### Login
+POST {{HostAddress}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "user@company.com"
+}
+
+> {%
+    client.global.set("accessToken", response.body);
+%}
+
+### Get forecast
+GET {{HostAddress}}/api/weather/forecast
+Authorization: Bearer {{accessToken}}
