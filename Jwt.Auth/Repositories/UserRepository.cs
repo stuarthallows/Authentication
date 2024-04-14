@@ -1,4 +1,5 @@
 ﻿using Jwt.Auth.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jwt.Auth.Repositories;
 
@@ -10,45 +11,28 @@ public interface IUserRepository
 
     Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default);
 
-    void Add(User user);
-
-    void Update(User user);
+    Task Add(User user);
 }
 
-// TODO persist to database
-public class UserRepository : IUserRepository
+public class UserRepository(AppDbContext context) : IUserRepository
 {
-    private readonly List<User> _users = [];
-
-    public Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var user = _users.FirstOrDefault(u => u.Id == id);
-        return Task.FromResult(user);
+        return await context.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
     }
 
-    public Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
+    public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
-        var user = _users.FirstOrDefault(u => u.Email == email);
-        return Task.FromResult(user);
+        return await context.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
     }
 
-    public Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default)
+    public async Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default)
     {
-        var isUnique = _users.All(u => u.Email != email);
-        return Task.FromResult(isUnique);
+        return await context.Users.AnyAsync(u => u.Email == email, cancellationToken);
     }
 
-    public void Add(User user)
+    public async Task Add(User user)
     {
-        _users.Add(user);
-    }
-
-    public void Update(User user)
-    {
-        var index = _users.FindIndex(u => u.Id == user.Id);
-        if (index != -1)
-        {
-            _users[index] = user;
-        }
+        await context.Users.AddAsync(user);
     }
 }

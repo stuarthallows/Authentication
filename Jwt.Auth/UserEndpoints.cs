@@ -35,7 +35,7 @@ public static class UserEndpoints
         }
 
         var user = new User(Guid.NewGuid(), request.Email, request.FirstName, request.LastName);
-        repository.Add(user);
+        await repository.Add(user);
 
         return TypedResults.Ok(user);
     }
