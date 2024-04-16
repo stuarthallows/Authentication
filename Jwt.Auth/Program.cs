@@ -1,8 +1,10 @@
 using Jwt.Auth;
+using Jwt.Auth.Authorization;
 using Jwt.Auth.Options;
 using Jwt.Auth.Repositories;
 using Jwt.Auth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,11 @@ builder.Services.ConfigureOptions<JwtOptionsSetup>();
 
 builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+
 builder.Services.AddTransient<IJwtProvider, JwtProvider>();
+builder.Services.AddScoped<IPermissionRepository, PermissionRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
