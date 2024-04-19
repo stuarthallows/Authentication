@@ -25,8 +25,14 @@ public class PermissionAuthorizationHandler(IServiceScopeFactory serviceScopeFac
         IPermissionRepository permissionRepository = scope.ServiceProvider.GetRequiredService<IPermissionRepository>();
         
         HashSet<string> permissions = await permissionRepository.GetPermissionsAsync(parsedUserId);
-        
         // TODO add caching here, so DB not hit on each request
+        
+        // Or, get the permissions from the JWT token
+        var tokenPermissions = 
+            context.User.Claims
+                .Where(c => c.Type == CustomClaims.Permissions)
+                .Select(c => c.Value)
+                .ToHashSet();
         
         if(permissions.Contains(requirement.Permission))
         {

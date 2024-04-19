@@ -54,7 +54,7 @@ public static class UserEndpoints
             return TypedResults.NotFound();
         }
 
-        var token = jwtProvider.Generate(user);
+        var token = await jwtProvider.GenerateAsync(user);
 
         return TypedResults.Ok(token);
     }
