@@ -13,6 +13,11 @@ public static class AuthWebApplicationExtensions
 
         builder.MapPost("register", UserEndpoints.RegisterUser).AllowAnonymous();
         builder.MapPost("login", UserEndpoints.LoginUser).AllowAnonymous();
+
+        // TODO understand Roles and Policies in minimal APIs
+        // How to add custom permission, like HasPermission("users.read")
+        // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security?view=aspnetcore-8.0
+
         builder.MapGet("{id}", UserEndpoints.GetUserById).RequireAuthorization();
         
         return app;
@@ -49,7 +54,7 @@ public static class UserEndpoints
             return TypedResults.NotFound();
         }
 
-        var token = jwtProvider.Generate(user);
+        var token = await jwtProvider.GenerateAsync(user);
 
         return TypedResults.Ok(token);
     }
