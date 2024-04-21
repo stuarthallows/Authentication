@@ -2,10 +2,9 @@
 
 namespace RequirementData.Authorization;
 
-class MinimumAgeAuthorizeAttribute : AuthorizeAttribute, IAuthorizationRequirement, IAuthorizationRequirementData
+class MinimumAgeAuthorizeAttribute(int age) : AuthorizeAttribute, IAuthorizationRequirement, IAuthorizationRequirementData
 {
-    public MinimumAgeAuthorizeAttribute(int age) => Age = age;
-    public int Age { get; }
+    public int Age { get; } = age;
 
     public IEnumerable<IAuthorizationRequirement> GetRequirements()
     {

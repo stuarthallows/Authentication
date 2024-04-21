@@ -2,9 +2,7 @@
 
 namespace RequirementData.Authorization;
 
-class MinimumAgeRequirement : IAuthorizationRequirement
+class MinimumAgeRequirement(int age) : IAuthorizationRequirement
 {
-    public int Age { get; private set; }
-
-    public MinimumAgeRequirement(int age) { Age = age; }
+    public int Age { get; private set; } = age;
 }

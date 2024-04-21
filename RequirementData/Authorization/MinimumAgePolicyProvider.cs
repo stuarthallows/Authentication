@@ -4,14 +4,11 @@ using Microsoft.Extensions.Options;
 
 namespace RequirementData.Authorization;
 
-class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
+class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) : IAuthorizationPolicyProvider
 {
     const string POLICY_PREFIX = "MinimumAge";
-    public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
-    public MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options)
-    {
-        FallbackPolicyProvider = new DefaultAuthorizationPolicyProvider(options);
-    }
+    public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = new(options);
+
     public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => FallbackPolicyProvider.GetDefaultPolicyAsync();
     public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => FallbackPolicyProvider.GetFallbackPolicyAsync();
 
@@ -20,8 +17,7 @@ class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
         if (policyName.StartsWith(POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
             int.TryParse(policyName.Substring(POLICY_PREFIX.Length), out var age))
         {
-            var policy = new AuthorizationPolicyBuilder(
-                JwtBearerDefaults.AuthenticationScheme);
+            var policy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
             policy.AddRequirements(new MinimumAgeRequirement(age));
             return Task.FromResult<AuthorizationPolicy?>(policy.Build());
         }
