@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Identity", "AspN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.Auth", "Jwt.Auth\Jwt.Auth.csproj", "{5AA5F1D7-E5B7-4ED3-B31A-F37399C3724E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequirementData", "RequirementData\RequirementData.csproj", "{DDE1FCC8-30F9-4D46-AB29-445646520559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5AA5F1D7-E5B7-4ED3-B31A-F37399C3724E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA5F1D7-E5B7-4ED3-B31A-F37399C3724E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA5F1D7-E5B7-4ED3-B31A-F37399C3724E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

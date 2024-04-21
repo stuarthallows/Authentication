@@ -1,0 +1,6 @@
+@RequirementData_HostAddress = http://localhost:5181
+
+GET {{RequirementData_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
