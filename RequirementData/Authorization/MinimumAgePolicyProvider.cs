@@ -6,7 +6,7 @@ namespace RequirementData.Authorization;
 
 class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) : IAuthorizationPolicyProvider
 {
-    const string POLICY_PREFIX = "MinimumAge";
+    private const string PolicyPrefix = "MinimumAge";
     public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = new(options);
 
     public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => FallbackPolicyProvider.GetDefaultPolicyAsync();
@@ -14,8 +14,8 @@ class MinimumAgePolicyProvider(IOptions<AuthorizationOptions> options) : IAuthor
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
-        if (policyName.StartsWith(POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
-            int.TryParse(policyName.Substring(POLICY_PREFIX.Length), out var age))
+        if (policyName.StartsWith(PolicyPrefix, StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(policyName.Substring(PolicyPrefix.Length), out var age))
         {
             var policy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
             policy.AddRequirements(new MinimumAgeRequirement(age));

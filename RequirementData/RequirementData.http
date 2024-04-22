@@ -1,6 +1,7 @@
-@RequirementData_HostAddress = http://localhost:5181
+@HostAddress = https://localhost:7036
 
-GET {{RequirementData_HostAddress}}/weatherforecast/
+GET {{HostAddress}}/api/weather/forecast
 Accept: application/json
+Authorization: Bearer {{Bearer}}
 
 ###
