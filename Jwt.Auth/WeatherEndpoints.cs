@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+﻿using Jwt.Auth.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Jwt.Auth;
@@ -12,7 +12,10 @@ public static class WeatherWebApplicationExtensions
 {
     public static WebApplication MapWeatherEndpoints(this WebApplication app)
     {
-        var builder = app.MapGroup("api/weather").RequireAuthorization().WithOpenApi();
+        var builder = app.MapGroup("api/weather")
+                        .RequireAuthorization()
+                        .WithOpenApi()
+                        .AddEndpointFilter<ApiKeyAuthenticationEndpointFilter>();
         
         builder.MapGet("/forecast", WeatherEndpoints.GetWeatherForecast);
         
