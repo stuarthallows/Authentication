@@ -1,0 +1,7 @@
+@HostAddress = https://localhost:7036
+
+GET {{HostAddress}}/api/weather/forecast
+Accept: application/json
+Authorization: Bearer {{Bearer}}
+
+###

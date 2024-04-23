@@ -346,3 +346,5 @@ lcov.info
 *.sqlite3
 *.db-shm
 *.db-wal
+
+http-client.private.env.json
