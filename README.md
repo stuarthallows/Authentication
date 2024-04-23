@@ -18,3 +18,9 @@ Test the policy with [user-jwts](https://learn.microsoft.com/en-us/aspnet/core/s
 - `dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01`
 - `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" https://localhost:7036/api/weather/forecast`
 
+## Role Based
+
+Roles are claims, but not all claims are roles.
+
+## [Policy Based](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-8.0)
+

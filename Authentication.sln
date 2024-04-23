@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwt.Auth", "Jwt.Auth\Jwt.Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequirementData", "RequirementData\RequirementData.csproj", "{DDE1FCC8-30F9-4D46-AB29-445646520559}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBased", "RoleBased\RoleBased.csproj", "{C487649F-7515-4956-8C7E-354EDB5B6D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyBased", "PolicyBased\PolicyBased.csproj", "{5F2AF213-C092-4AB7-888D-5A3F7BB4B176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDE1FCC8-30F9-4D46-AB29-445646520559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C487649F-7515-4956-8C7E-354EDB5B6D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C487649F-7515-4956-8C7E-354EDB5B6D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C487649F-7515-4956-8C7E-354EDB5B6D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C487649F-7515-4956-8C7E-354EDB5B6D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F2AF213-C092-4AB7-888D-5A3F7BB4B176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F2AF213-C092-4AB7-888D-5A3F7BB4B176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F2AF213-C092-4AB7-888D-5A3F7BB4B176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F2AF213-C092-4AB7-888D-5A3F7BB4B176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
